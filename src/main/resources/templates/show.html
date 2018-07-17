@@ -1,13 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
     <span sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add a Course</a></span>
     <a href="/">Show All Courses</a><br/>
     <a href="/logout">Logout</a><br/>
+
+    <div><span th:text="${#authentication.getPrincipal().getUsername()}"></span></div>
 
     Title: <span th:text="${course.title}"></span><br/>
     Instructor: <span th:text="${course.instructor}"></span><br/>
