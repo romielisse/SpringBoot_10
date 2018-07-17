@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    <span sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add a Course</a></span>
     <a href="/">Show All Courses</a><br/>
+    <a href="/logout">Logout</a><br/>
+
     Title: <span th:text="${course.title}"></span><br/>
-    Instructor: <span th:text="${course.intstructor}"></span><br/>
+    Instructor: <span th:text="${course.instructor}"></span><br/>
     Description: <span th:text="${course.description}"></span><br/>
     Credits: <span th:text="${course.credit}"></span><br/>
-    <a th:href="@{delete/{id}(id=${course.id})}">Delete this course</a>
+    <span sec:authorize="hasAuthority('ADMIN')">
+        <a th:href="@{delete/{id}(id=${course.id})}">Delete this course</a>
+    </span>
+
 </body>
 </html>
